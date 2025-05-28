@@ -1,0 +1,13 @@
+const fs = require('fs');
+const path = require('path');
+const promptFilePath = path.join(__dirname, 'prompt.txt');
+
+let customPrompt = '';
+if (fs.existsSync(promptFilePath)) {
+  customPrompt = fs.readFileSync(promptFilePath, 'utf8');
+}
+
+const userMessage = ctx.message.text;
+const fullPrompt = `${customPrompt}\n${userMessage}`;
+
+// Use 'fullPrompt' in your Gemini API request
